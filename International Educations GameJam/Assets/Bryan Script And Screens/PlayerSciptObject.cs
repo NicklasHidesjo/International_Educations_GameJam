@@ -9,7 +9,7 @@ public class PlayerSciptObject : ScriptableObject
 {
     [Header("PlayerSpeed")]
 
-    public float MoveSpeed;
+    public float M_MoveSpeed;
 
    
 
