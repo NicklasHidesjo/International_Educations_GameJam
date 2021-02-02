@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        RB.velocity = new Vector2(MoveDir.x * m_Stats.MoveSpeed, MoveDir.y * m_Stats.MoveSpeed);
+        RB.velocity = new Vector2(MoveDir.x * m_Stats.M_MoveSpeed, MoveDir.y * m_Stats.M_MoveSpeed);
         // makes the rigitbody move 
     }
 }
