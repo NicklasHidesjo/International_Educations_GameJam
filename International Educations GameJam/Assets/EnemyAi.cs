@@ -109,7 +109,7 @@ public class EnemyAi : MonoBehaviour
 
     private void AttackPlayer()
     {
-        Debug.Log("attacking player");
+        player.GetComponent<PlayerDeath>().Death();
     }
 
     private void WalkAlongPath()
