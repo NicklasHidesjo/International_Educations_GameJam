@@ -44,5 +44,4 @@ public class ButtonsScript : MonoBehaviour
 
         UnityEditor.EditorApplication.isPlaying = false;
     }
-
 }
