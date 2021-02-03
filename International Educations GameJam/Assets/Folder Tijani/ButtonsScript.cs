@@ -5,28 +5,30 @@ using UnityEngine;
 
 public class ButtonsScript : MonoBehaviour
 {
-    [SerializeField] private bool allowedToMove = false;
+    //private Image image;
 
-    private Image image;
+    private GamePlayManager gamePlayManager;
 
     private void Start()
     {
-        image = FindObjectOfType<Image>();
+        //image = FindObjectOfType<Image>();
 
-        image.material.color = Color.white;
+        //image.material.color = Color.white;
+
+        gamePlayManager = GetComponent<GamePlayManager>();
     }
 
     private void Update()
     {
-        if (allowedToMove == true)
+        if (gamePlayManager.AllowedToMove)
         {
-            image.material.color = Color.red;
+            //image.material.color = Color.red;
         }
     }
 
     public void StartButton()
     {
-        allowedToMove = true;
+        gamePlayManager.StartGame();
     }
 
     public void ReplayGameButton()
@@ -41,7 +43,6 @@ public class ButtonsScript : MonoBehaviour
         //Application.Quit();
 
         UnityEditor.EditorApplication.isPlaying = false;
-
     }
 
 }
