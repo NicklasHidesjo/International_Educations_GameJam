@@ -48,7 +48,7 @@ public class EnemyAi : MonoBehaviour
 
     private void GetComponents()
     {
-        player = FindObjectOfType<PlayerMovement>().transform;
+        player = FindObjectOfType<SimpleKeyboard>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
