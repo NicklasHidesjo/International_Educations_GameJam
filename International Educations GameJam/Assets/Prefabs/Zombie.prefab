@@ -91,7 +91,6 @@ MonoBehaviour:
   followSpeed: 2
   path: []
   waitTime: 0.5
-  backTrack: 0
 --- !u!1 &2909699181501555130
 GameObject:
   m_ObjectHideFlags: 0

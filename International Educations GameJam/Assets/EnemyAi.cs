@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-
-
     [Header("Zombie Range")]
     [Tooltip("Range for detecting the player")]
     [SerializeField] float detectionRange = 3f;
