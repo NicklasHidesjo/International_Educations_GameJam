@@ -5,31 +5,59 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
-    [SerializeField] Transform[] path = new Transform[0];
 
-    [SerializeField] Transform player = null;
-    [SerializeField] float detectionRange = 10f;
-    [SerializeField] float followRange = 20f;
+
+    [Header("Zombie Range")]
+    [Tooltip("Range for detecting the player")]
+    [SerializeField] float detectionRange = 3f;
+    [Tooltip("Range for how far away the player can be before giving up the chase")]
+    [SerializeField] float followRange = 5f;
+    [Tooltip("Range where the object starts attacking the player")]
     [SerializeField] float attackRange = 1f;
-    [SerializeField] float waitTime = 1f;
 
+
+    [Header("Speed")]
+    [Tooltip("The speed that the object will patrol at")]
     [SerializeField] float patrolSpeed = 10f;
+    [Tooltip("The speed that the object will chase the player at")]
     [SerializeField] float followSpeed = 20f;
 
-    NavMeshAgent navMeshAgent;    
+    [Header("Patrol")]
+    [Tooltip("Place the patrol points in here in the order you wish the object to walk")]
+    [SerializeField] Transform[] path = new Transform[0];
+    [Tooltip("This is the time in seconds that the object will wait before moving on to the new point")]
+    [SerializeField] float waitTime = 1f;
+    [Tooltip("Turn this on if we want the zombie to go back the same path it came")]
+    [SerializeField] bool backTrack = false;
+
+
 
     bool isFollowing = false;
-
     bool waiting = false;
-    [SerializeField] bool walkback = false;
-    [SerializeField] int pathIndex = 0;
+    bool walkback = false;
+    int pathIndex = 0;
+
+    Transform player = null;
+    NavMeshAgent navMeshAgent;
 
     void Start()
     {
+        GetComponents();
+        Init();
+    }
+
+    private void GetComponents()
+    {
         player = FindObjectOfType<PlayerMovement>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Init()
+    {
+        navMeshAgent.speed = patrolSpeed;
         transform.position = path[0].position;
     }
+
 
     private void Update()
     {
@@ -104,15 +132,20 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator PatrolWaiting()
     {
+        Debug.Log("Waiting for new patrol point");
         yield return new WaitForSeconds(waitTime);
         if (walkback)
             pathIndex--;
         else
             pathIndex++;
 
+
+
         if (pathIndex >= path.Length || pathIndex <= 0)
         {
-            walkback = !walkback;
+            if (backTrack)
+                walkback = !walkback;
+
             if (walkback)
                 pathIndex = path.Length-1;
             else
@@ -121,7 +154,7 @@ public class EnemyAi : MonoBehaviour
         waiting = false;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
@@ -131,6 +164,5 @@ public class EnemyAi : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, followRange);
-
     }
 }
