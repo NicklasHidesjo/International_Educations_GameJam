@@ -39,6 +39,7 @@ public class EnemyAi : MonoBehaviour
 
     Transform player = null;
     NavMeshAgent navMeshAgent;
+    GamePlayManager gamePlayManager;
 
     void Start()
     {
@@ -50,6 +51,7 @@ public class EnemyAi : MonoBehaviour
     {
         player = FindObjectOfType<SimpleKeyboard>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
 
     private void Init()
@@ -66,6 +68,7 @@ public class EnemyAi : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!gamePlayManager.AllowedToMove) return;
         HandleWalking();
     }
 
@@ -109,7 +112,7 @@ public class EnemyAi : MonoBehaviour
 
     private void AttackPlayer()
     {
-        Debug.Log("attacking player");
+        player.GetComponent<PlayerDeath>().Death();
     }
 
     private void WalkAlongPath()

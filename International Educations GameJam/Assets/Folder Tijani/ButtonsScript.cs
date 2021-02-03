@@ -15,7 +15,7 @@ public class ButtonsScript : MonoBehaviour
 
         //image.material.color = Color.white;
 
-        gamePlayManager = GetComponent<GamePlayManager>();
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
     }
 
     private void Update()

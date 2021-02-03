@@ -37,11 +37,6 @@ public class GamePlayManager : MonoBehaviour
         allowedToMove = false;
     }
 
-    private void Start()
-    {
-        ItemPickupTracker();
-    }
-
     private void Update()
     {
         if (dead)
@@ -50,9 +45,11 @@ public class GamePlayManager : MonoBehaviour
         }
     }
 
-    public void ItemPickupTracker()
+    public void ItemPickupTracker(Item pickedUp)
     {
         bool allItemsMatched = true;
+
+        items.Add(pickedUp);
 
         foreach (ItemType itemType in /*(ItemType[])*/ItemType.GetValues(typeof(ItemType)))
         {
@@ -64,6 +61,7 @@ public class GamePlayManager : MonoBehaviour
                 {
                     continue;
                 }
+
                 if (item.Type == itemType)
                 {
                     Debug.Log("match found for " + item.Type);
