@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
 
 
@@ -27,14 +27,11 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] Transform[] path = new Transform[0];
     [Tooltip("This is the time in seconds that the object will wait before moving on to the new point")]
     [SerializeField] float waitTime = 1f;
-    [Tooltip("Turn this on if we want the zombie to go back the same path it came")]
-    [SerializeField] bool backTrack = false;
 
 
 
     bool isFollowing = false;
     bool waiting = false;
-    bool walkback = false;
     int pathIndex = 0;
 
     Transform player = null;
@@ -117,11 +114,6 @@ public class EnemyAi : MonoBehaviour
 
     private void WalkAlongPath()
     {
-        if (path.Length == 0)
-            navMeshAgent.SetDestination(path[0].position);
-        else
-            navMeshAgent.SetDestination(path[pathIndex].position);
-
         float x = path[pathIndex].position.x;
         float z = path[pathIndex].position.z;
 
@@ -135,25 +127,9 @@ public class EnemyAi : MonoBehaviour
 
     IEnumerator PatrolWaiting()
     {
-        Debug.Log("Waiting for new patrol point");
         yield return new WaitForSeconds(waitTime);
-        if (walkback)
-            pathIndex--;
-        else
-            pathIndex++;
-
-
-
-        if (pathIndex >= path.Length || pathIndex <= 0)
-        {
-            if (backTrack)
-                walkback = !walkback;
-
-            if (walkback)
-                pathIndex = path.Length-1;
-            else
-                pathIndex = 0;
-        }
+        pathIndex = Random.Range(0, path.Length);
+        navMeshAgent.destination = path[pathIndex].position;
         waiting = false;
     }
 

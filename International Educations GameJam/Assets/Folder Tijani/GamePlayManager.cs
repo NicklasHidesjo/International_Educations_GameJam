@@ -5,15 +5,21 @@ using UnityEngine;
 public class GamePlayManager : MonoBehaviour
 {
     [SerializeField] List<Item> items = new List<Item>();
+
     [SerializeField] GameObject startScreen;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject winScreen;
 
+    [SerializeField] GameUIDisplayer gameUIDisplayer;
+
     [SerializeField] bool dead = false;
-
     [SerializeField] private bool allowedToMove = false;
-
     public bool AllowedToMove { get { return allowedToMove; } }
+
+    private void Awake()
+    {
+        gameUIDisplayer = FindObjectOfType<GameUIDisplayer>();
+    }
 
     public void StartGame()
     {
@@ -24,8 +30,6 @@ public class GamePlayManager : MonoBehaviour
 
     private void WonGame()
     {
-        Debug.Log("all items found. We won");
-
         winScreen.SetActive(true);
         allowedToMove = false;
     }
@@ -51,21 +55,16 @@ public class GamePlayManager : MonoBehaviour
 
         items.Add(pickedUp);
 
+        gameUIDisplayer.SetPickUpText(pickedUp.Type);
+
         foreach (ItemType itemType in /*(ItemType[])*/ItemType.GetValues(typeof(ItemType)))
         {
             bool matchFound = false;
-            Debug.Log(itemType);
             foreach (var item in items)
             {
-                if (matchFound)
-                {
-                    continue;
-                }
-
+                if (matchFound) continue;
                 if (item.Type == itemType)
                 {
-                    Debug.Log("match found for " + item.Type);
-
                     matchFound = true;
                 }
             }
@@ -73,7 +72,6 @@ public class GamePlayManager : MonoBehaviour
             if (!matchFound)
             {
                 allItemsMatched = false;
-                Debug.Log("no match found");
                 break;
             }
         }

@@ -4,5 +4,10 @@ public enum ItemType
     Key,
     Bones,
     RottenFlesh,
-    Skulls
+    Skulls,
+    Flashlight,
+    Brain,
+    Potion,
+    Arm,
+    Head
 }
