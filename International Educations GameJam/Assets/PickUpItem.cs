@@ -8,16 +8,8 @@ public class PickUpItem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Item"))
         {
-            Debug.Log(other.GetComponent<Item>().Type);
-
-          
-
             FindObjectOfType<GamePlayManager>().ItemPickupTracker(other.GetComponent<Item>());
-
             other.gameObject.SetActive(false);
         }
     }
-
-    
-
 }
