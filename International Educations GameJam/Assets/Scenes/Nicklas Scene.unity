@@ -214,13 +214,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 43, z: -111}
+  m_LocalRotation: {x: 0.23488759, y: 0, z: 0, w: 0.9720226}
+  m_LocalPosition: {x: 0, y: 58.9, z: -104.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.17, y: 0, z: 0}
 --- !u!1 &1357095317
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e7ba283e11662204cb75c90fd96e92ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -587,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783717706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120, y: 18, z: -10.9}
+  m_LocalPosition: {x: 0, y: 18, z: -31.31}
   m_LocalScale: {x: 21, y: 55, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783717706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ba85b1bceaf69f48b5f670d5e265519, type: 3}
   m_Name: 
@@ -734,11 +734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 625555214319291157, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 625555214319291157, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 625555214319291157, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -790,7 +790,15 @@ PrefabInstance:
       objectReference: {fileID: 1783717707}
     - target: {fileID: 4751839447014203715, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: attackRange
-      value: 2.7
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751839447014203715, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
+      propertyPath: followRange
+      value: 23.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751839447014203715, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
+      propertyPath: detectionRange
+      value: 14.7
       objectReference: {fileID: 0}
     - target: {fileID: 4751839447014203715, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: path.Array.size
@@ -825,16 +833,20 @@ PrefabInstance:
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 6424567267841741319, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
+      propertyPath: m_Speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424567267841741319, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_Height
-      value: 30
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6424567267841741319, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_Radius
-      value: 2
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6424567267841741319, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
       propertyPath: m_BaseOffset
-      value: 17
+      value: 4.26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2ecaccf657adf1498a1c6356b5ca77e, type: 3}
@@ -862,7 +874,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -883,7 +895,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4bd10297b96186e44becb1a8ed09b99b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a8ea5ba250008b4c9077206f590d067, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -891,7 +903,7 @@ SpriteRenderer:
   m_Size: {x: 29.3, y: 29.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &3150924007671263114

@@ -13,13 +13,16 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] float attackRange = 1f;
     [SerializeField] float waitTime = 1f;
 
+    [SerializeField] float patrolSpeed = 10f;
+    [SerializeField] float followSpeed = 20f;
+
     NavMeshAgent navMeshAgent;    
 
     bool isFollowing = false;
 
     bool waiting = false;
-    bool walkback = false;
-    int pathIndex = 0;
+    [SerializeField] bool walkback = false;
+    [SerializeField] int pathIndex = 0;
 
     void Start()
     {
@@ -28,7 +31,6 @@ public class EnemyAi : MonoBehaviour
         transform.position = path[0].position;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         transform.rotation = Quaternion.identity;
@@ -36,26 +38,50 @@ public class EnemyAi : MonoBehaviour
 
     void FixedUpdate()
     {
+        HandleWalking();
+    }
+
+    private void HandleWalking()
+    {
         float distance = Vector3.Distance(player.position, transform.position);
-        if (!isFollowing)
+
+        CheckifShouldFollow(distance);
+
+        if(isFollowing)
         {
-            WalkAlongPath();
-            isFollowing = false;
-        }
-        else if (distance < attackRange)
-        {
-            Debug.Log("attacking player");
-        }
-        else if(distance < detectionRange)
-        {
-            navMeshAgent.SetDestination(player.position);
-            isFollowing = true;
+            FollowPlayer(distance);
         }
         else
         {
-            isFollowing = false;
+            WalkAlongPath();
         }
+    }
 
+    private void CheckifShouldFollow(float distance)
+    {
+        if (!isFollowing && distance < detectionRange)
+        {
+            isFollowing = true;
+            navMeshAgent.speed = followSpeed;
+        }
+        else if (isFollowing && distance > followRange)
+        {
+            isFollowing = false;
+            navMeshAgent.speed = patrolSpeed;
+        }
+    }
+
+    private void FollowPlayer(float distance)
+    {
+        if(isFollowing)
+        navMeshAgent.SetDestination(player.position);
+        if (distance < attackRange)
+            AttackPlayer();
+    }
+
+    private void AttackPlayer()
+    {
+        Debug.Log("attacking player");
     }
 
     private void WalkAlongPath()
@@ -84,9 +110,13 @@ public class EnemyAi : MonoBehaviour
         else
             pathIndex++;
 
-        if (pathIndex > path.Length || pathIndex < 0)
+        if (pathIndex >= path.Length || pathIndex <= 0)
         {
             walkback = !walkback;
+            if (walkback)
+                pathIndex = path.Length-1;
+            else
+                pathIndex = 0;
         }
         waiting = false;
     }
