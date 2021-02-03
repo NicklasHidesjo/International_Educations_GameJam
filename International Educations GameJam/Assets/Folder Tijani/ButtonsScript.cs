@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class ButtonsScript : MonoBehaviour
 {
-    [SerializeField] private bool allowedToMove = false;
-    private Image image;
+    //private Image image;
 
     private GamePlayManager gamePlayManager;
 
     private void Start()
     {
-        image = FindObjectOfType<Image>();
+        //image = FindObjectOfType<Image>();
 
-        image.material.color = Color.white;
+        //image.material.color = Color.white;
 
         gamePlayManager = GetComponent<GamePlayManager>();
     }
@@ -23,7 +22,7 @@ public class ButtonsScript : MonoBehaviour
     {
         if (gamePlayManager.AllowedToMove)
         {
-            image.material.color = Color.red;
+            //image.material.color = Color.red;
         }
     }
 
