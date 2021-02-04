@@ -9,6 +9,7 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] GameObject startScreen;
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject InGameScreen;
 
     [SerializeField] GameUIDisplayer gameUIDisplayer;
 
@@ -35,6 +36,8 @@ public class GamePlayManager : MonoBehaviour
 
         startScreen.SetActive(false);
 
+        InGameScreen.SetActive(true);
+
         soundScript.source.Stop();
 
         soundScript.PlayMusic(1, 0.5f);
@@ -42,14 +45,15 @@ public class GamePlayManager : MonoBehaviour
 
     private void WonGame()
     {
+        InGameScreen.SetActive(false);
         winScreen.SetActive(true);
         allowedToMove = false;
     }
 
     public void GameOver()
     {
+        InGameScreen.SetActive(false);
         gameOverScreen.SetActive(true);
-
         allowedToMove = false;
     }
 
