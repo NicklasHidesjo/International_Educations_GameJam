@@ -35,7 +35,6 @@ public class EnemyAI : MonoBehaviour
     Transform player = null;
     NavMeshAgent navMeshAgent;
     GamePlayManager gamePlayManager;
-    AnimationController animController;
 
     void Start()
     {
@@ -45,7 +44,6 @@ public class EnemyAI : MonoBehaviour
 
     private void GetComponents()
     {
-        animController = GetComponent<AnimationController>();
         player = FindObjectOfType<SimpleKeyboard>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         gamePlayManager = FindObjectOfType<GamePlayManager>();
