@@ -34,9 +34,10 @@ public class GamePlayManager : MonoBehaviour
         allowedToMove = true;
 
         startScreen.SetActive(false);
+
         soundScript.source.Stop();
 
-        soundScript.PlayMusic(1, 1f);
+        soundScript.PlayMusic(1, 0.5f);
     }
 
     private void WonGame()

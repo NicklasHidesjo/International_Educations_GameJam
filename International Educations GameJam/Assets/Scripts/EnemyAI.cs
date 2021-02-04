@@ -35,6 +35,7 @@ public class EnemyAI : MonoBehaviour
     Transform player = null;
     NavMeshAgent navMeshAgent;
     GamePlayManager gamePlayManager;
+    SoundScript soundScript;
 
     void Start()
     {
@@ -47,6 +48,7 @@ public class EnemyAI : MonoBehaviour
         player = FindObjectOfType<SimpleKeyboard>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         gamePlayManager = FindObjectOfType<GamePlayManager>();
+        soundScript = FindObjectOfType<SoundScript>();
     }
 
     private void Init()
@@ -89,6 +91,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isFollowing && distance < detectionRange)
         {
+            soundScript.ZombieDetectingSound(0.5f);
             isFollowing = true;
             navMeshAgent.speed = followSpeed;
         }

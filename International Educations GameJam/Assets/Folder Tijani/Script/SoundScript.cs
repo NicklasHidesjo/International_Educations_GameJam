@@ -26,20 +26,17 @@ public class SoundScript : MonoBehaviour
         return audioClip;
     }
 
-    public void AttackingSounds()
+    public AudioClip AttackingSounds(float a)
     {
-        source.clip = attackingSounds[Random.Range(0, attackingSounds.Length)];
-
-        if (!source.isPlaying)
-        {
-            source.Play();
-        }
+        AudioClip audioClip = attackingSounds[Random.Range(0, attackingSounds.Length)];
+        source.PlayOneShot(attackingSounds[Random.Range(0, attackingSounds.Length)], a);
+        return audioClip;
     }
 
-    public AudioClip ZombieDetectingSound()
+    public AudioClip ZombieDetectingSound(float a)
     {
         AudioClip audioClip = zombieDetection[Random.Range(0, zombieDetection.Length)];
-
+        source.PlayOneShot(zombieDetection[Random.Range(0, zombieDetection.Length)], a);
         return audioClip;
     }
 }
