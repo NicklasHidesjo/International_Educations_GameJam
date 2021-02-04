@@ -28,13 +28,14 @@ public class EnemyAI : MonoBehaviour
 
 
 
-    bool isFollowing = false;
-    bool waiting = false;
-    int pathIndex = 0;
+    [SerializeField] bool isFollowing = false;
+    [SerializeField] bool waiting = false;
+    [SerializeField] int pathIndex = 0;
 
     Transform player = null;
     NavMeshAgent navMeshAgent;
     GamePlayManager gamePlayManager;
+    AnimationController animController;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class EnemyAI : MonoBehaviour
 
     private void GetComponents()
     {
+        animController = GetComponent<AnimationController>();
         player = FindObjectOfType<SimpleKeyboard>().transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         gamePlayManager = FindObjectOfType<GamePlayManager>();
@@ -52,6 +54,9 @@ public class EnemyAI : MonoBehaviour
     private void Init()
     {
         navMeshAgent.speed = patrolSpeed;
+        pathIndex = Random.Range(0, path.Length);
+        navMeshAgent.SetDestination(path[pathIndex].position);
+        transform.position = path[pathIndex].position;
     }
 
 
@@ -93,6 +98,8 @@ public class EnemyAI : MonoBehaviour
         {
             isFollowing = false;
             navMeshAgent.speed = patrolSpeed;
+            navMeshAgent.destination = transform.position;
+            StartCoroutine(PatrolWaiting());
         }
     }
 
@@ -114,6 +121,8 @@ public class EnemyAI : MonoBehaviour
         float x = path[pathIndex].position.x;
         float z = path[pathIndex].position.z;
 
+
+
         if (!waiting && transform.position.x == x && transform.position.z == z)
         {
             waiting = true;
@@ -124,7 +133,10 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PatrolWaiting()
     {
+        animController.Walking = false;
+        Debug.Log("Getting new pos");
         yield return new WaitForSeconds(waitTime);
+        animController.Walking = true;
         pathIndex = Random.Range(0, path.Length);
         navMeshAgent.destination = path[pathIndex].position;
         waiting = false;

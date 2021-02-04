@@ -50,7 +50,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!195 &6424567267841741319
 NavMeshAgent:
@@ -61,7 +61,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 625555214319291158}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -70,8 +70,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 1
+  m_BaseOffset: -0.18
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4751839447014203715
@@ -98,7 +98,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  waitTime: 0.5
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  waitTime: 2
+  isFollowing: 0
+  waiting: 0
+  pathIndex: 0
 --- !u!114 &2800536867001169710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,13 +132,20 @@ MonoBehaviour:
   idleMaterialsBack:
   - {fileID: 2800000, guid: 902a53f8f9d5ca94e88b2f6698fd242f, type: 3}
   - {fileID: 2800000, guid: e75e007cc629fd34598143bfc62de2ea, type: 3}
-  walkMaterialsFront: []
-  walkMaterialsBack: []
+  walkMaterialsFront:
+  - {fileID: 2800000, guid: 35629656a0ff51847bef608f021086cc, type: 3}
+  - {fileID: 2800000, guid: deaa39e18aa6e69408ef0647ccc10dd1, type: 3}
+  - {fileID: 2800000, guid: 5cd222933c768bb4a87f01b4a2041a2a, type: 3}
+  - {fileID: 2800000, guid: e8c2536caf924a24d93ad146c1adefe8, type: 3}
+  walkMaterialsBack:
+  - {fileID: 2800000, guid: c17c753ae9f700b4cafd08c9f75caa38, type: 3}
+  - {fileID: 2800000, guid: 9dd42168ac912624f966f993fc31b4d0, type: 3}
+  - {fileID: 2800000, guid: 223f86754ce5ea542b473290e1b0e9db, type: 3}
+  - {fileID: 2800000, guid: 07d7dccbde31bf848abbbedd1c71258d, type: 3}
   idleAnimSpeed: 0.15
   walkAnimSpeed: 0.15
-  front: {fileID: 2100000, guid: ba18196864a07a74389ec6b667b0d014, type: 2}
-  back: {fileID: 2100000, guid: ae3e38cb9e50cc04192a695d44ca6a1a, type: 2}
-  walk: 0
+  front: {fileID: 2100000, guid: 5ec7c658cae29ad4da320be75ef46cc8, type: 2}
+  back: {fileID: 2100000, guid: 456bf8349e9c4f94796c2dcf213e2e37, type: 2}
 --- !u!1 &4400137020177031108
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +157,6 @@ GameObject:
   - component: {fileID: 3412515459140063456}
   - component: {fileID: 7698601342995792640}
   - component: {fileID: 2211443654024046319}
-  - component: {fileID: 218275009952477332}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -151,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4400137020177031108}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 2.34, z: 0}
+  m_LocalPosition: {x: 0, y: 0.693, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 625555214319291157}
@@ -184,7 +205,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae3e38cb9e50cc04192a695d44ca6a1a, type: 2}
+  - {fileID: 2100000, guid: 456bf8349e9c4f94796c2dcf213e2e37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,20 +227,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &218275009952477332
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4400137020177031108}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8835069483642366525
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +238,6 @@ GameObject:
   - component: {fileID: 7849131933547910041}
   - component: {fileID: 3426789453367936340}
   - component: {fileID: 1864106837446163315}
-  - component: {fileID: 1242690806673402978}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -247,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8835069483642366525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0}
+  m_LocalPosition: {x: 0, y: 0.693, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 625555214319291157}
@@ -280,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ba18196864a07a74389ec6b667b0d014, type: 2}
+  - {fileID: 2100000, guid: 5ec7c658cae29ad4da320be75ef46cc8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,17 +308,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1242690806673402978
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8835069483642366525}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

@@ -15,25 +15,39 @@ public class AnimationController : MonoBehaviour
     [SerializeField] Material front = null;
     [SerializeField] Material back = null;
 
-    [SerializeField] bool walk = false;
+    bool idling = false;
+    bool walking = false;
+    public bool Walking
+    {
+        set
+        {
+            walking = value;
+            if (walking) { StartCoroutine(HandleWalk()); };
+            idling = !value;
+            if (idling) { StartCoroutine(HandleIdle()); };
+        }
+    }
 
     int index = 0;
 
+    Rigidbody rigidBody;
+
     private void Start()
     {
-        StartCoroutine(HandleIdle());
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        if(walk)
+        if(walking)
         {
+            Debug.Log("walking");
             front.mainTexture = walkMaterialsFront[index];
-            back.mainTexture = walkMaterialsFront[index];
+            back.mainTexture = walkMaterialsBack[index];
         }
         else
         {
-            Debug.Log(index);
+            Debug.Log("idling");
             back.mainTexture = idleMaterialsBack[index];
             front.mainTexture = idleMaterialsFront[index];
         }
@@ -42,9 +56,25 @@ public class AnimationController : MonoBehaviour
     IEnumerator HandleIdle()
     {
         index = 0;
-        while(!walk)
+        while(idling)
         {
             yield return new WaitForSeconds(idleAnimSpeed);
+            if (!idling) break;
+            index++;
+            if (index >= idleMaterialsFront.Length)
+            {
+                index = 0;
+            }
+        }
+    }
+
+    IEnumerator HandleWalk()
+    {
+        index = 0;
+        while (walking)
+        {
+            yield return new WaitForSeconds(idleAnimSpeed);
+            if (!walking) break;
             index++;
             if (index >= idleMaterialsFront.Length)
             {
