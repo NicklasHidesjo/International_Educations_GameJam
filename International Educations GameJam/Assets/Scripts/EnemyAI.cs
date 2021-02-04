@@ -91,7 +91,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isFollowing && distance < detectionRange)
         {
-            soundScript.ZombieDetectingSound(0.5f);
+            soundScript.ZombieDetectingSound(0.1f);
             isFollowing = true;
             navMeshAgent.speed = followSpeed;
         }
@@ -114,6 +114,8 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
+        soundScript.source.Stop();
+        soundScript.AttackingSounds(0.5f);
         player.GetComponent<PlayerDeath>().Death();
     }
 
