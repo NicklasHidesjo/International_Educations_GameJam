@@ -26,23 +26,23 @@ public class GameUIDisplayer : MonoBehaviour
 
     private void SetText()
     {
-        item0.text = ItemType.Lamp.ToString();
+        item0.text = ItemType.Planks.ToString();
         item1.text = ItemType.Key.ToString();
         item2.text = ItemType.Bones.ToString();
-        item3.text = ItemType.RottenFlesh.ToString();
+        item3.text = ItemType.Chest.ToString();
         item4.text = ItemType.Skulls.ToString();
         item5.text = ItemType.Flashlight.ToString();
         item6.text = ItemType.Brain.ToString();
         item7.text = ItemType.Potion.ToString();
         item8.text = ItemType.Arm.ToString();
-        item9.text = ItemType.Head.ToString();
+        item9.text = ItemType.Chains.ToString();
     }
 
     public void SetPickUpText(ItemType type)
     {
         switch(type)
         {
-            case ItemType.Lamp:
+            case ItemType.Planks:
                 item0.text = type.ToString();
                 item0.color = Color.green;
                 break;
@@ -54,7 +54,7 @@ public class GameUIDisplayer : MonoBehaviour
                 item2.text = type.ToString();
                 item2.color = Color.green;
                 break;
-            case ItemType.RottenFlesh:
+            case ItemType.Chest:
                 item3.text = type.ToString();
                 item3.color = Color.green;
                 break;
@@ -78,7 +78,7 @@ public class GameUIDisplayer : MonoBehaviour
                 item8.text = type.ToString();
                 item8.color = Color.green;
                 break;
-            case ItemType.Head:
+            case ItemType.Chains:
                 item9.text = type.ToString();
                 item9.color = Color.green;
                 break;

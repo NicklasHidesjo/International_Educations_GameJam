@@ -8,7 +8,6 @@ public class ZombieAnimController : MonoBehaviour
     NavMeshAgent navMeshAgent;
     Animator anim;
 
-
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -18,7 +17,6 @@ public class ZombieAnimController : MonoBehaviour
     void Update()
     {
         Vector3 direction = navMeshAgent.velocity;
-        Debug.Log(direction);
         if (direction.z == 0 && direction.x == 0)
         {
             anim.SetTrigger("Idle");

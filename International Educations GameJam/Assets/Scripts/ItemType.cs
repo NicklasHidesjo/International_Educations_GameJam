@@ -1,13 +1,13 @@
 public enum ItemType
 {
-    Lamp,
+    Planks,
     Key,
     Bones,
-    RottenFlesh,
+    Chest,
     Skulls,
     Flashlight,
     Brain,
     Potion,
     Arm,
-    Head
+    Chains
 }
