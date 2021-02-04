@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4fe7d481c5efd5c4fb4592209e30a122
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Frightmare
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c6adca1e830ff024cbc6f50931c2e5a7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
