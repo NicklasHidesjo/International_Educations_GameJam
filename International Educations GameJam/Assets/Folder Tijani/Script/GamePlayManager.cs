@@ -23,10 +23,7 @@ public class GamePlayManager : MonoBehaviour
 
     private void Awake()
     {
-        gameUIDisplayer = FindObjectOfType<GameUIDisplayer>();
-
         soundScript = FindObjectOfType<SoundScript>();
-
         audioSource = FindObjectOfType<AudioSource>();
     }
 
