@@ -16,6 +16,8 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] private bool allowedToMove = false;
 
     private SoundScript soundScript;
+
+    private AudioSource audioSource;
     public bool AllowedToMove { get { return allowedToMove; } }
 
     private void Awake()
@@ -23,6 +25,8 @@ public class GamePlayManager : MonoBehaviour
         gameUIDisplayer = FindObjectOfType<GameUIDisplayer>();
 
         soundScript = FindObjectOfType<SoundScript>();
+
+        audioSource = FindObjectOfType<AudioSource>();
     }
 
     public void StartGame()
@@ -30,6 +34,15 @@ public class GamePlayManager : MonoBehaviour
         allowedToMove = true;
 
         startScreen.SetActive(false);
+
+        /*audioSource.clip = */
+        
+        soundScript.source.Stop();
+
+        soundScript.PlayMusic(1, 1f);
+
+
+        //soundScript.PlayMusic(1);
     }
 
     private void WonGame()

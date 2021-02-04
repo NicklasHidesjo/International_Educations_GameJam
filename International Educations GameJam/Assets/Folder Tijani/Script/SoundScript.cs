@@ -5,7 +5,9 @@ using UnityEngine;
 public class SoundScript : MonoBehaviour
 {
     [SerializeField] private AudioClip[] startMusic;
-    private AudioSource source;
+    [SerializeField] private AudioClip[] attackingSounds;
+    [SerializeField] private AudioClip[] zombieDetection;
+    public AudioSource source;
 
     private void Start()
     {
@@ -14,17 +16,40 @@ public class SoundScript : MonoBehaviour
 
     private void Update()
     {
-        playMusic(0);
+        //source.clip = PlayMusic(0);
+
+        PlayMusic(0, 0.01f);
     }
 
-
-    public void playMusic(int i)
+    public /*void*/ AudioClip PlayMusic(int i, float a)
     {
-        source.clip = startMusic[i];
+        AudioClip audioClip = startMusic[i];
+        source.PlayOneShot(startMusic[i], a);
+        return audioClip;
+
+        //source.clip = startMusic[i];
+
+        //if (!source.isPlaying)
+        //{
+        //    //source.Play();
+        //    source.PlayOneShot(startMusic[i], 1f);
+        //}
+    }
+
+    public void AttackingSounds()
+    {
+        source.clip = attackingSounds[Random.Range(0, attackingSounds.Length)];
 
         if (!source.isPlaying)
         {
             source.Play();
         }
+    }
+
+    public AudioClip ZombieDetectingSound()
+    {
+        AudioClip audioClip = zombieDetection[Random.Range(0, zombieDetection.Length)];
+
+        return audioClip;
     }
 }
