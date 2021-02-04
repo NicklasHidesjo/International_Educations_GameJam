@@ -4,82 +4,45 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    [SerializeField] Texture[] idleMaterialsFront = new Texture[0];
-    [SerializeField] Texture[] idleMaterialsBack = new Texture[0];
-    [SerializeField] Texture[] walkMaterialsFront = new Texture[0];
-    [SerializeField] Texture[] walkMaterialsBack = new Texture[0];
+    Animator animator;
 
-    [SerializeField] float idleAnimSpeed = 0.15f;
-    [SerializeField] float walkAnimSpeed = 0.15f;
+    bool walkedAway = false;
+    bool idle = true;
 
-    [SerializeField] Material front = null;
-    [SerializeField] Material back = null;
-
-    bool idling = false;
-    bool walking = false;
-    public bool Walking
-    {
-        set
-        {
-            walking = value;
-            if (walking) { StartCoroutine(HandleWalk()); };
-            idling = !value;
-            if (idling) { StartCoroutine(HandleIdle()); };
-        }
-    }
-
-    int index = 0;
-
-    Rigidbody rigidBody;
 
     private void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+    public void SetAnimation(Vector3 direction)
     {
-        if(walking)
+        if(direction == Vector3.zero)
         {
-            Debug.Log("walking");
-            front.mainTexture = walkMaterialsFront[index];
-            back.mainTexture = walkMaterialsBack[index];
+            animator.SetTrigger("Idle");
+            idle = true;
         }
         else
         {
-            Debug.Log("idling");
-            back.mainTexture = idleMaterialsBack[index];
-            front.mainTexture = idleMaterialsFront[index];
+            idle = false;
+        }
+        if(direction.z > 0 || walkedAway && !idle)
+        {
+            animator.SetTrigger("Walk Back");
+        }
+        if(direction.z < 0 || !walkedAway && !idle)
+        {
+            animator.SetTrigger("Walk Front");
+        }
+
+        if (direction.z > 0)
+        {
+            walkedAway = true;
+        }
+        else if(direction.z < 0)
+        {
+            walkedAway = false;
         }
     }
 
-    IEnumerator HandleIdle()
-    {
-        index = 0;
-        while(idling)
-        {
-            yield return new WaitForSeconds(idleAnimSpeed);
-            if (!idling) break;
-            index++;
-            if (index >= idleMaterialsFront.Length)
-            {
-                index = 0;
-            }
-        }
-    }
-
-    IEnumerator HandleWalk()
-    {
-        index = 0;
-        while (walking)
-        {
-            yield return new WaitForSeconds(idleAnimSpeed);
-            if (!walking) break;
-            index++;
-            if (index >= idleMaterialsFront.Length)
-            {
-                index = 0;
-            }
-        }
-    }
 }
