@@ -133,10 +133,8 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator PatrolWaiting()
     {
-        animController.Walking = false;
         Debug.Log("Getting new pos");
         yield return new WaitForSeconds(waitTime);
-        animController.Walking = true;
         pathIndex = Random.Range(0, path.Length);
         navMeshAgent.destination = path[pathIndex].position;
         waiting = false;
