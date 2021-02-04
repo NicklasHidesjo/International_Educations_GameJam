@@ -34,15 +34,9 @@ public class GamePlayManager : MonoBehaviour
         allowedToMove = true;
 
         startScreen.SetActive(false);
-
-        /*audioSource.clip = */
-        
         soundScript.source.Stop();
 
         soundScript.PlayMusic(1, 1f);
-
-
-        //soundScript.PlayMusic(1);
     }
 
     private void WonGame()
@@ -74,7 +68,7 @@ public class GamePlayManager : MonoBehaviour
 
         gameUIDisplayer.SetPickUpText(pickedUp.Type);
 
-        foreach (ItemType itemType in /*(ItemType[])*/ItemType.GetValues(typeof(ItemType)))
+        foreach (ItemType itemType in ItemType.GetValues(typeof(ItemType)))
         {
             bool matchFound = false;
             foreach (var item in items)

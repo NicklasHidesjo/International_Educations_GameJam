@@ -16,24 +16,14 @@ public class SoundScript : MonoBehaviour
 
     private void Update()
     {
-        //source.clip = PlayMusic(0);
-
         PlayMusic(0, 0.01f);
     }
 
-    public /*void*/ AudioClip PlayMusic(int i, float a)
+    public AudioClip PlayMusic(int i, float a)
     {
         AudioClip audioClip = startMusic[i];
         source.PlayOneShot(startMusic[i], a);
         return audioClip;
-
-        //source.clip = startMusic[i];
-
-        //if (!source.isPlaying)
-        //{
-        //    //source.Play();
-        //    source.PlayOneShot(startMusic[i], 1f);
-        //}
     }
 
     public void AttackingSounds()
